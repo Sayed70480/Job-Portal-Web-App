@@ -4,6 +4,8 @@ import cors from "cors"
 import dotenv from "dotenv";
 import connectDB from "./config/mongoose-connection.js"
 import userRoute from "./routes/user.route.js"
+import compnayRoute from "./routes/company.route.js"
+import jobsRoute from "./routes/jobs.route.js"
 
 
 
@@ -32,6 +34,8 @@ app.use(cors(corsOptions));
 // All Api's
 
 app.use('/api/v1/user',userRoute);
+app.use('/api/v1/company',compnayRoute);
+app.use('/api/v1/jobs',jobsRoute);
 
 
 app.listen(PORT , (req ,res)=>{

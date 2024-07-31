@@ -31,6 +31,10 @@ const jobSchema = new mongoose.Schema(
       type: Number,
       require: true,
     },
+    experiencelevel: {
+      type: Number,
+      require: true,
+    },
     company: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Company",
