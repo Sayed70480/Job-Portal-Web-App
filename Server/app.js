@@ -6,7 +6,7 @@ import connectDB from "./config/mongoose-connection.js"
 import userRoute from "./routes/user.route.js"
 import compnayRoute from "./routes/company.route.js"
 import jobsRoute from "./routes/jobs.route.js"
-
+import applicationRoute from "./routes/application.route.js"
 
 
 const app= express();
@@ -36,6 +36,7 @@ app.use(cors(corsOptions));
 app.use('/api/v1/user',userRoute);
 app.use('/api/v1/company',compnayRoute);
 app.use('/api/v1/jobs',jobsRoute);
+app.use('/api/v1/application',applicationRoute);
 
 
 app.listen(PORT , (req ,res)=>{
