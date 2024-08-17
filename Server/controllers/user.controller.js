@@ -7,17 +7,18 @@ import jwt from "jsonwebtoken";
 export const register = async (req, res) => {
   try {
     const { fullname, email, phoneNumber, password, role } = req.body;
+    const file = req.file;
     if (!email || !fullname || !phoneNumber || !password || !role) {
       return res.status(400).json({
         message: "Something is Missing",
-        success: true,
+        success: false,
       });
     } else {
       const user = await User.findOne({ email: email });
       if (user) {
         return res.status(400).json({
           message: "user Already exist with this email",
-          success: true,
+          success: false,
         });
       } else {
         const hashpassword = await bcrypt.hash(password, 10);
@@ -28,6 +29,7 @@ export const register = async (req, res) => {
           password: hashpassword,
           role,
         });
+
         return res.status(200).json({
           message: "Account Created Successfully",
           success: true,

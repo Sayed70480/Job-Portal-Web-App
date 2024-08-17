@@ -4,7 +4,14 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { RadioGroup } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import { USER_API_END_POINT } from "@/utils/constants.js";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { setLoading } from "@/redux/authSlice";
+import store from "@/redux/store";
+import { Loader2 } from "lucide-react";
 
 function Login() {
   const [input, setInput] = useState({
@@ -12,6 +19,10 @@ function Login() {
     password: "",
     role: "",
   });
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.auth.loading);
+  console.log(loading);
 
   const changeEventHandler = (e) => {
     setInput({
@@ -20,10 +31,29 @@ function Login() {
     });
   };
 
-  const submitHandler = async (e) =>{
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(input);
-  }
+   
+    try {
+      dispatch(setLoading(true));
+      const user = await axios.post(`${USER_API_END_POINT}/login`, input, {
+        headers: {
+          "Content-type": "application/json",
+        },
+        withCredentials: true,
+      });
+
+      if (user.data.success) {
+        navigate("/");
+        toast.success(user.data.message);
+      }
+    } catch (error) {
+      console.log(error.message);
+      toast.error(error.response?.data?.message);
+    } finally {
+      dispatch(setLoading(false));
+    }
+  };
 
   return (
     <div>
@@ -61,11 +91,11 @@ function Login() {
             <RadioGroup className=" flex items-center gap-4 my-5">
               <div className="flex items-center justify-center space-x-2">
                 <Input
-                   type="radio"
-                   name="role"
-                   value="Student"
-                   checked = {input.role === "Student"}
-                   onChange={changeEventHandler}
+                  type="radio"
+                  name="role"
+                  value="student"
+                  checked={input.role === "student"}
+                  onChange={changeEventHandler}
                   className="border-[#7444db] border-2  cursor-pointer "
                 />
 
@@ -73,30 +103,39 @@ function Login() {
               </div>
               <div className="flex items-center space-x-2">
                 <Input
-                   type="radio"
-                   name="role"
-                   value="Recruiter"
-                   checked = {input.role === "Recruiter"}
-                   onChange={changeEventHandler}
+                  type="radio"
+                  name="role"
+                  value="recruiter"
+                  checked={input.role === "recruiter"}
+                  onChange={changeEventHandler}
                   className="border-[#7444db] border-2 cursor-pointer "
                 />
                 <Label htmlFor="option-two">Recruiter </Label>
               </div>
             </RadioGroup>
           </div>
-
-          <Button
-            type="submit"
-            className="bg-[#7444db] rounded-[4px] hover:bg-[#5d4199] hover:text-white w-full my-4  "
-          >
-            Login
-          </Button>
-          <span>
-            if don't have Account?{" "}
-            <Link to="/signup" className="text-[#7444db] font-semibold">
+      <div className="flex flex-col justify-center items-center">
+      <div className="w-full flex justify-center">
+       {loading? (
+            <Button>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait...
+            </Button>
+          ) : (
+            <Button
+              type="submit"
+              className="bg-[#7444db] rounded-[4px] hover:bg-[#5d4199] hover:text-white w-full my-4  "
+            >
+              Login
+            </Button>
+          )}
+       </div>
+          <div className="flex justify-start w-full ">
+            if don't have Account?
+            <Link to="/signup" className="text-[#7444db] font-semibold ml-[1px]">
               Signup
             </Link>
-          </span>
+          </div>
+      </div>
         </form>
       </div>
     </div>

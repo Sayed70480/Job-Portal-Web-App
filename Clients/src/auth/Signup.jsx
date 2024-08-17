@@ -4,20 +4,21 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { RadioGroup } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-
+import {  Link, useNavigate } from "react-router-dom";
+import { USER_API_END_POINT } from "@/utils/constants";
+import { toast } from "sonner";
+import axios from "axios";
 function Signup() {
-    const [input, setInput] = useState({
-        fullname: "",
-        email: "",
-        phoneNumber: "",
-        password: "",
-        role: "",
-        file: "",
-      });
+  const [input, setInput] = useState({
+    fullname: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
+    role: "",
+    file: "",
+  });
 
-
-
+  const navigate = useNavigate();
   const changeEventHandler = (e) => {
     setInput({
       ...input,
@@ -32,10 +33,35 @@ function Signup() {
     });
   };
 
-  const submitHandler = async (e) =>{
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(e);
-  }
+    console.log(input);
+    
+    const formData = new FormData();
+    formData.append("fullname", input.fullname);
+    formData.append("email", input.email);
+    formData.append("phoneNumber", input.phoneNumber);
+    formData.append("password", input.password);
+    formData.append("role", input.role);
+    if (input.file) {
+      formData.append("file", input.file);
+    }
+    try {
+      const user = await axios.post(`${USER_API_END_POINT}/register`, formData, {
+        headers: {
+          "Content-type": "multipart/form-data",
+        },
+        withCredentials: true,
+      });
+      if(user.data.success){
+        navigate("/login")
+        toast.success(user.data.message)
+      }
+    } catch (error) {
+      console.log(error.message);
+      toast.error(error.response?.data?.message)
+    }
+  };
 
   return (
     <div>
@@ -93,8 +119,8 @@ function Signup() {
                 <Input
                   type="radio"
                   name="role"
-                  value="Student"
-                  checked = {input.role === "Student"}
+                  value="student"
+                  checked={input.role === "student"}
                   onChange={changeEventHandler}
                   className="border-[#7444db] border-2  cursor-pointer "
                 />
@@ -105,8 +131,8 @@ function Signup() {
                 <Input
                   type="radio"
                   name="role"
-                  value="Recruiter"
-                  checked = {input.role === "Recruiter"}
+                  value="recruiter"
+                  checked={input.role === "recruiter"}
                   onChange={changeEventHandler}
                   className="border-[#7444db] border-2 cursor-pointer "
                 />
