@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setLoading } from "@/redux/authSlice";
 import store from "@/redux/store";
 import { Loader2 } from "lucide-react";
+import Footer from "@/components/shared/Footer";
 
 function Login() {
   const [input, setInput] = useState({
@@ -123,7 +124,7 @@ function Login() {
           ) : (
             <Button
               type="submit"
-              className="bg-[#7444db] rounded-[4px] hover:bg-[#5d4199] hover:text-white w-full my-4  "
+              className="bg-[#7444db] rounded-[4px] hover:bg-[#5d4199] text-white w-full my-4  "
             >
               Login
             </Button>
@@ -138,6 +139,7 @@ function Login() {
       </div>
         </form>
       </div>
+      <Footer/>
     </div>
   );
 }

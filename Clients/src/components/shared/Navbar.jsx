@@ -17,24 +17,23 @@ const {user , setUser} = useState(false);
     <div className="bg-white">
       <div className="flex items-center justify-between mx-auto max-w-[85%] h-16">
         <div>
-          <h1 className="text-2xl font-bold">
+         <Link to={"/"}>
+         <h1 className="text-2xl font-bold">
             Job<span className="text-[#7444db]">Portal</span>
           </h1>
+         </Link>
         </div>
         <div className=" flex  gap-10 items-center">
           <ul className="flex font-medium items-center gap-5">
           <Link to='/'><li>Home</li></Link>  
-            <li>Jobs</li>
-            <li>Browse</li>
-            {/* <li><Link>Home</Link></li>
-                <li><Link>Jobs</Link></li>
-                <li><Link>Browse</Link></li> */}
+           <Link to={'/jobs'}> <li>Jobs</li></Link>
+           <Link to={'/browse'}> <li>Browse</li></Link>
           </ul>
         {
         !user ? (
         <div className="flex gap-2">
        <Link to='/login'> <Button  className="font-medium">Login</Button></Link>
-        <Link to='/signup'><Button  className="bg-[#7444db] rounded-[4px] hover:bg-[#5d4199] hover:text-white font-medium">Signup</Button></Link>
+        <Link to='/signup'><Button  className="bg-[#7444db] rounded-[4px] hover:bg-[#5d4199] text-white font-medium">Signup</Button></Link>
         </div>
         ) :
 

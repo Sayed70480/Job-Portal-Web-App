@@ -154,7 +154,7 @@ function Signup() {
 
           <Button
             type="submit"
-            className="bg-[#7444db] rounded-[4px] hover:bg-[#5d4199] hover:text-white w-full my-4  "
+            className="bg-[#7444db] rounded-[4px] hover:bg-[#5d4199] text-white w-full my-4  "
           >
             SignUp
           </Button>

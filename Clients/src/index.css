@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+  :root {
+    --border: hsl(220, 60%, 50%); /* Example values */
+    --input: hsl(220, 60%, 50%);
+    --ring: hsl(220, 60%, 50%);
+    /* Other variables */
+}
