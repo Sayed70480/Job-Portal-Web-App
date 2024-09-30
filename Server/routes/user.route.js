@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.route('/register').post(upload.single('file'),register)
 router.route('/login').post(login)
-router.route('/profile/update').post(isAuthenticated ,updateProfile)
+router.route('/profile/update').post(isAuthenticated , upload.single('file') ,updateProfile)
 router.route('/profile/logout').get(isAuthenticated ,logout)
 
 

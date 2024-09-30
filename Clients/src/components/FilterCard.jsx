@@ -24,7 +24,7 @@ function FilterCard() {
       <hr className="mt-3" />
       <RadioGroup >
         {filterData.map((items, index) => (
-          <div className="" >
+          <div key={index} >
             <h1 className="font-bold text-[#7444db]">{items.filterType}</h1>
             {items.area.map((data, index) => {
               return (

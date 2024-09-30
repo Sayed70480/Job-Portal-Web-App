@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import { USER_API_END_POINT } from "@/utils/constants.js";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { setLoading } from "@/redux/authSlice";
+import { setLoading, setUser } from "@/redux/authSlice";
 import store from "@/redux/store";
 import { Loader2 } from "lucide-react";
 import Footer from "@/components/shared/Footer";
@@ -23,7 +23,6 @@ function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.auth.loading);
-  console.log(loading);
 
   const changeEventHandler = (e) => {
     setInput({
@@ -45,6 +44,7 @@ function Login() {
       });
 
       if (user.data.success) {
+        dispatch(setUser(user.data.user))
         navigate("/");
         toast.success(user.data.message);
       }

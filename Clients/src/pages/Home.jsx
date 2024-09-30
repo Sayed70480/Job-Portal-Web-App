@@ -4,8 +4,10 @@ import Navbar from '@/components/shared/Navbar'
 import LatestJobs from '@/components/LatestJobs'
 import React from 'react'
 import Footer from '@/components/shared/Footer'
+import useGetAlljobs from '@/hooks/useGetAlljobs'
 
 function Home() {
+  useGetAlljobs()
   return (
     <>
     <Navbar/>

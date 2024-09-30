@@ -8,7 +8,15 @@ import {  Link, useNavigate } from "react-router-dom";
 import { USER_API_END_POINT } from "@/utils/constants";
 import { toast } from "sonner";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import store from "@/redux/store";
+import { setLoading } from "@/redux/authSlice";
+import { Loader2 } from "lucide-react";
 function Signup() {
+
+const {loading} = useSelector(store => store.auth);
+const dispatch = useDispatch();
+
   const [input, setInput] = useState({
     fullname: "",
     email: "",
@@ -35,8 +43,6 @@ function Signup() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(input);
-    
     const formData = new FormData();
     formData.append("fullname", input.fullname);
     formData.append("email", input.email);
@@ -47,6 +53,7 @@ function Signup() {
       formData.append("file", input.file);
     }
     try {
+      dispatch(setLoading(true))
       const user = await axios.post(`${USER_API_END_POINT}/register`, formData, {
         headers: {
           "Content-type": "multipart/form-data",
@@ -60,6 +67,8 @@ function Signup() {
     } catch (error) {
       console.log(error.message);
       toast.error(error.response?.data?.message)
+    }finally{
+      dispatch(setLoading(false))
     }
   };
 
@@ -99,6 +108,7 @@ function Signup() {
               type="text"
               value={input.phoneNumber}
               name="phoneNumber"
+                 placeholder="write with Country Code"
               onChange={changeEventHandler}
               className="rounded-[4px] font-medium border-[#7444db] border-2"
             />
@@ -152,12 +162,19 @@ function Signup() {
             </div>
           </div>
 
-          <Button
-            type="submit"
-            className="bg-[#7444db] rounded-[4px] hover:bg-[#5d4199] text-white w-full my-4  "
-          >
-            SignUp
-          </Button>
+          {loading ? (
+                <h1 className="mt-4 flex justify-center items-center w-full text-lg font-semibold">
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please
+                  wait...
+                </h1>
+              ) : (
+                <Button
+                  type="submit"
+                  className="bg-[#7444db] rounded-[4px] hover:bg-[#5d4199] text-white w-full mt-4  "
+                >
+                  Sign Up
+                </Button>
+              )}
           <span>
             Already have account?{" "}
             <Link to="/login" className="text-[#7444db] font-semibold">

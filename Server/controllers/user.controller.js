@@ -1,6 +1,8 @@
 import { User } from "../models/user.model.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import getDataUrl from "../utils/dataUri.js";
+import cloudinary from "../utils/cloudinary.js";
 
 // for user registration
 
@@ -8,6 +10,9 @@ export const register = async (req, res) => {
   try {
     const { fullname, email, phoneNumber, password, role } = req.body;
     const file = req.file;
+    const fileUri = getDataUrl(file);
+    const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+
     if (!email || !fullname || !phoneNumber || !password || !role) {
       return res.status(400).json({
         message: "Something is Missing",
@@ -28,6 +33,9 @@ export const register = async (req, res) => {
           phoneNumber,
           password: hashpassword,
           role,
+          profile :{
+            profilePhoto : cloudResponse.secure_url,
+          }
         });
 
         return res.status(200).json({
@@ -114,15 +122,18 @@ export const logout = (req, res) => {
 export const updateProfile = async (req, res) => {
   try {
     const { fullname, email, phoneNumber, bio, skills } = req.body;
+
     const file = req.file;
-    if (!email || !fullname || !phoneNumber || !bio || !skills) {
+    // cloudinary
+    const fileUri = getDataUrl(file);
+    const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+
+    if (!email || !fullname || !phoneNumber || !bio || !skills || !file) {
       return res.status(200).json({
         message: "Something is messing",
         success: true,
       });
     }
-
-    // cloudinary
 
     let skillsArray = skills.split(",");
     let userId = req.id;
@@ -135,11 +146,17 @@ export const updateProfile = async (req, res) => {
     }
 
     // updating data
-    user.fullname = fullname;
-    user.email = email;
-    user.phoneNumber = phoneNumber;
-    user.profile.bio = bio;
-    user.profile.skills = skillsArray;
+    if(fullname) user.fullname = fullname;
+    if(email) user.email = email;
+    if(phoneNumber) user.phoneNumber = phoneNumber;
+    if(bio) user.profile.bio = bio
+    if(skills) user.profile.skills = skillsArray;
+
+    if(cloudResponse) {
+        user.profile.resume = cloudResponse.secure_url // save cloudinary url 
+        user.profile.resumeOriginalName = file.originalname // save original file name
+       }
+
     await user.save();
     user = {
       _id: user._id,
