@@ -15,7 +15,6 @@ import { USER_API_END_POINT } from "@/utils/constants";
 import { toast } from "sonner";
 import { setUser } from "@/redux/authSlice";
 function Navbar() {
-
   const navigate = useNavigate();
   const { user } = useSelector((store) => store.auth);
   const dispatch = useDispatch();
@@ -47,15 +46,28 @@ function Navbar() {
         </div>
         <div className=" flex  gap-10 items-center max-md:flex-col max-md:justify-center max-md:gap-4 ">
           <ul className="flex font-medium items-center gap-5">
-            <Link to="/">
-              <li>Home</li>
-            </Link>
-            <Link to={"/jobs"}>
-              <li>Jobs</li>
-            </Link>
-            <Link to={"/browse"}>
-              <li>Browse</li>
-            </Link>
+            {user && user?.role === "recruiter" ? (
+              <>
+                <Link to="/admin/companies">
+                  <li>Companies</li>
+                </Link>
+                <Link to={"/admin/jobs"}>
+                  <li>Jobs</li>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to="/">
+                  <li>Home</li>
+                </Link>
+                <Link to={"/jobs"}>
+                  <li>Jobs</li>
+                </Link>
+                <Link to={"/browse"}>
+                  <li>Browse</li>
+                </Link>
+              </>
+            )}
           </ul>
           {!user ? (
             <div className="flex gap-2">
@@ -72,31 +84,33 @@ function Navbar() {
             <Popover>
               <PopoverTrigger>
                 <Avatar className="cursor-pointer ">
-                  <AvatarImage src={user?.profile?. profilePhoto} />
+                  <AvatarImage src={user?.profile?.profilePhoto} />
                 </Avatar>
               </PopoverTrigger>
               <PopoverContent className="w-80 bg-white">
                 <div className="flex gap-4 space-y-2 ">
                   <Avatar>
-                    <AvatarImage src={user?.profile?. profilePhoto} />
+                    <AvatarImage src={user?.profile?.profilePhoto} />
                   </Avatar>
                   <div>
                     <h4 className="font-medium">Syed MernStack</h4>
-                    <p className="text-justify text-sm text-muted-foreground">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Totam fugiat maiores exercitationem corporis nisi,
-                      corrupti dicta quia saepe atque expedita non optio laborum
-                      maxime quis recusandae ea obcaecati eius? Non.
-                    </p>
+                    {user && user?.role === "recruiter" ? null : (
+                      <p className="text-justify text-sm text-muted-foreground">
+                        {user?.profile?.bio.slice(0, 310)}.............
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="flex flex-col text-gray-600">
-                  <div className="flex w-fit items-center gap-3 cursor-pointer ">
-                    <Link to={"/profile"} className="flex items-center">
-                      <User2 />
-                      <Button variant="link">View Profile</Button>
-                    </Link>
-                  </div>
+                  {user && user?.role === "recruiter" ? null : (
+                    <div className="flex w-fit items-center gap-3 cursor-pointer ">
+                      <Link to={"/profile"} className="flex items-center">
+                        <User2 />
+                        <Button variant="link">View Profile</Button>
+                      </Link>
+                    </div>
+                  )}
+
                   <div className="flex w-fit items-center gap-3 cursor-pointer">
                     <LogOut />
                     <Button onClick={logoutHandler} variant="link">

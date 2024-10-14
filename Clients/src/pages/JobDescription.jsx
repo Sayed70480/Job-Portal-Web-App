@@ -9,7 +9,7 @@ import {
   JOBS_API_END_POINT,
 } from "@/utils/constants";
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
@@ -19,30 +19,31 @@ function JobDescription() {
   const { user } = useSelector((store) => store.auth);
   const params = useParams();
   const singileJobId = params.id;
-  const isApplied =
+
+  const isInitialApplied =
     singleJob?.applications.some(
       (application) => application?.applicant == user?._id
     ) || false;
+    const [isApplied, setIsApplied]= useState(isInitialApplied)
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  
   const applyJobHandler = async () => {
     try {
-      const res = axios.get(
+      const res = await axios.get(
         `${APPLICATION_API_END_POINT}/apply/${singileJobId}`,
         {
           withCredentials: true,
         }
       );
-
       if (res.data.success) {
-        toast.success(user.data.message)
-        if (!user) {
-          navigate("/login");
-          toast.success(user.data.message)
-          
-        }
+        setIsApplied(true)
+        const updateSingleJob = {...singleJob,applications:[...singleJob.applications,{applicant:user?._id}] }
+        dispatch(setSingleJob(updateSingleJob))
+        toast.success(res?.data?.message)
+       
       }
     } catch (error) {
+      console.log(error.message);
       toast.error(error.response?.data?.message);
     }
   };
@@ -59,6 +60,7 @@ function JobDescription() {
 
         if (res?.data?.success) {
           dispatch(setSingleJob(res.data.job));
+          setIsApplied(res.data.job.applications.some(application=>application.applicant === user?._id)  )
         }
       } catch (error) {
         console.error("Error fetching jobs:", error.message);
@@ -67,7 +69,7 @@ function JobDescription() {
     };
 
     fetchSingleJob();
-  }, [singileJobId, dispatch]);
+  }, [singileJobId, dispatch,user?.id]);
 
   return (
     <div>
@@ -101,10 +103,10 @@ function JobDescription() {
           </div>
           {/* appllied Button */}
           <Button
-            disabled={isApplied}
+            disabled={isInitialApplied}
             onClick={applyJobHandler}
             className={` rounded-3xl text-white  ${
-              isApplied
+              isInitialApplied
                 ? "bg-gray-300 text-black cursor-not-allowed  hover:bg-gray-300"
                 : " bg-[#7444db] hover:bg-[#5d3da2]"
             }`}
