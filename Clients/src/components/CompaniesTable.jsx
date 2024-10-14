@@ -39,7 +39,7 @@ function CompaniesTable() {
             <TableCell className="text-center ">2/2/2000</TableCell>
             <TableCell className="text-center ">
               <Popover>
-              <PopoverTrigger ><MoreHorizontal className="hover:text-[#7444db] size-8"/></PopoverTrigger>
+              <PopoverTrigger ><MoreHorizontal className="hover:text-[#7444db] size-8 "/></PopoverTrigger>
                 <PopoverContent className="w-32">
                   <div className="flex justify-between">
                     <Edit2 className="text-[#7444db]"/>

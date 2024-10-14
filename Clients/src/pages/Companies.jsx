@@ -5,8 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function Companies() {
+
+  const navigate = useNavigate();
   return (
     <div>
       <Navbar />
@@ -17,7 +20,7 @@ function Companies() {
             className="rounded-xl text-md font-semibold"
             placeholder="Filter by Name"
           />
-          <Button className="bg-[#7444db] text-white rounded-xl hover:bg-[#543a8b]">
+          <Button className="bg-[#7444db] text-white rounded-xl hover:bg-[#543a8b]" onClick={()=>navigate("/admin/companie/create")}>
             New Company
           </Button>
         </div>
