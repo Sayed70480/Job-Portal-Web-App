@@ -1,4 +1,4 @@
-import CompaniesTable from "@/components/CompaniesTable";
+import CompaniesTable from "@/components/admin/CompaniesTable";
 import Footer from "@/components/shared/Footer";
 import Navbar from "@/components/shared/Navbar";
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,9 @@ import { useNavigate } from "react-router-dom";
 function Companies() {
 
   const navigate = useNavigate();
+
+
+
   return (
     <div>
       <Navbar />

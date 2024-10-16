@@ -38,11 +38,19 @@ function Navbar() {
     <div className="bg-white   ">
       <div className="flex  items-center justify-between mx-auto max-w-[85%] h-16 max-md:flex-col max-md:max-w-[100%] max-md:py-20 max-md:gap-4 max-md:justify-center">
         <div>
-          <Link to={"/"}>
-            <h1 className="text-2xl font-bold">
-              Job<span className="text-[#7444db]">Portal</span>
-            </h1>
-          </Link>
+          {user?.profile?.role === "student" ? (
+            <Link to={"/"}>
+              <h1 className="text-2xl font-bold">
+                Job<span className="text-[#7444db]">Portal</span>
+              </h1>
+            </Link>
+          ) : (
+            <Link to={"/admin/companies"}>
+              <h1 className="text-2xl font-bold">
+                Job<span className="text-[#7444db]">Portal</span>
+              </h1>
+            </Link>
+          )}
         </div>
         <div className=" flex  gap-10 items-center max-md:flex-col max-md:justify-center max-md:gap-4 ">
           <ul className="flex font-medium items-center gap-5">
