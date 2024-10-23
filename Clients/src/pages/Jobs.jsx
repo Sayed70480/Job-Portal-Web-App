@@ -21,7 +21,7 @@ const {alljobs} = useSelector(store => store.job)
           </div>
 
           {alljobs.length > 0 ? (
-            <div className="flex-1 h-[84vh] overflow-y-auto pb-5">
+            <div className="flex-1 h-[92vh] overflow-y-auto pb-5">
               <div className="grid grid-cols-2 gap-4  px-4">
               {alljobs.map((jobs, index) => (
                 <JobsList key={jobs._id} jobs={jobs}  />

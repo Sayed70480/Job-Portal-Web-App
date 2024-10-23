@@ -33,6 +33,7 @@ function Login() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+ 
    
     try {
       dispatch(setLoading(true));
@@ -118,9 +119,9 @@ function Login() {
       <div className="flex flex-col justify-center items-center">
       <div className="w-full flex justify-center">
        {loading? (
-            <Button>
+            <a className="w-full flex items-center justify-center mt-4">
               <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait...
-            </Button>
+            </a>
           ) : (
             <Button
               type="submit"

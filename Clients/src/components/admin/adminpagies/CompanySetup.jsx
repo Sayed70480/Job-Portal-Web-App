@@ -24,6 +24,7 @@ function CompanySetup() {
   const { singleCompany  } = useSelector(store => store.company);
   const [loading, setLoading] = useState(false);
   const companyId = useParams();
+  useGetCompanyById(companyId.id)
   const navigate = useNavigate();
 
   const changeEventHandler = (event) => {

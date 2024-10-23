@@ -12,10 +12,6 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 dotenv.config({});
 
-app.get("/", (req, res) => {
-  res.send("home");
-});
-
 //middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

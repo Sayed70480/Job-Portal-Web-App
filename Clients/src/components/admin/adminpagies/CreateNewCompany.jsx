@@ -56,7 +56,6 @@ function CreateNewCompany() {
           <Input
             type="text"
             className="border rounded-xl my-2 text-sm text-center font-semibold focus:placeholder-gray-500 max-w-[55%]"
-            name="company"
             value={companyName}
             onChange={(e) => setCompanyName(e.target.value)}
             placeholder="Example , JobHunt MicroSoft etc...."

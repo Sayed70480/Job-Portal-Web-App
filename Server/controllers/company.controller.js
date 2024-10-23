@@ -77,17 +77,18 @@ export const updateCompany = async (req, res) => {
   try {
     const { name, description, website, location } = req.body;
     // console.log(name,description,website,location);
-    
+
     const file = req.file;
     const fileUri = getDataUrl(file);
     const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
     // cloudinary
-    const updatedData = { name, description, website, location, logo : cloudinary.secure_url };
+    const logo = cloudResponse.secure_url;
+    const updatedData = { name, description, website, location, logo };
     const companyId = req.params.id;
     const company = await Company.findByIdAndUpdate(companyId, updatedData, {
       new: true,
     });
-console.log(company);
+    console.log(company);
 
     return res.status(200).json({
       message: "copmany information are updated",
