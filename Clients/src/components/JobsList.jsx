@@ -8,18 +8,18 @@ import { Link, useNavigate } from "react-router-dom";
 
 function JobsList({ jobs }) {
 
-  const daysAgoFunction = (mongoDBtime) =>{
-    const  mongoCreatedtime = new Date(mongoDBtime);
+  const daysAgoFunction = (mongoDBtime) => {
+    const mongoCreatedtime = new Date(mongoDBtime);
     const currenttime = new Date;
-    const timeDifference =   currenttime - mongoCreatedtime;
-    return Math.floor(timeDifference/(1000*24*60*60))
+    const timeDifference = currenttime - mongoCreatedtime;
+    return Math.floor(timeDifference / (1000 * 24 * 60 * 60))
   }
 
   const navigate = useNavigate();
   return (
     <div className="shadow-xl p-4 bg-white border border-gray-100 rounded-[15px] h-fit">
       <div className="flex items-center justify-between">
-        <p className="font-semibold text-gray-400">{daysAgoFunction(jobs.createdAt) == 0 ? "Today" : `${daysAgoFunction(jobs.createdAt)} Day's Ago` } </p>
+        <p className="font-semibold text-gray-400">{daysAgoFunction(jobs.createdAt) == 0 ? "Today" : `${daysAgoFunction(jobs.createdAt)} Day's Ago`} </p>
         <Button
           variant="outline"
           className="rounded-full border-[#6A38C2]"
@@ -46,7 +46,7 @@ function JobsList({ jobs }) {
           {jobs?.title}
         </h1>
         <p className="font-semibold text-justify tracking-wider">
-          {jobs?.description.slice(0,110)}..........
+          {jobs?.description.slice(0, 110)}..........
         </p>
       </div>
 
@@ -55,21 +55,21 @@ function JobsList({ jobs }) {
           variant="ghost"
           className="text-blue-500 border border-blue-500 font-bold"
         >
-    
+
           {jobs?.position} Position
         </Badge>
         <Badge
           variant="ghost"
           className="text-red-400 font-bold border border-red-400"
         >
-      
+
           {jobs?.jobType}
         </Badge>
         <Badge
           variant="ghost"
           className="text-[#6A38C2] border border-[#6A38C2] font-bold"
         >
-          
+
           {jobs?.salary} LPA
         </Badge>
       </div>

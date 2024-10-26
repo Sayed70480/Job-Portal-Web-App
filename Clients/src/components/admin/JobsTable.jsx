@@ -10,7 +10,7 @@ import {
 } from "../ui/table";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { Edit2, MoreHorizontal } from "lucide-react";
+import { Edit2, Eye, MoreHorizontal } from "lucide-react";
 import { useSelector } from "react-redux";
 import store from "@/redux/store";
 import { useNavigate } from "react-router-dom";
@@ -71,12 +71,16 @@ console.log(filterAdminJobs);
                     <PopoverTrigger>
                       <MoreHorizontal className="hover:text-[#7444db] size-8 " />
                     </PopoverTrigger>
-                    <PopoverContent className="w-32 bg-white">
-                      <div className="flex justify-between" onClick={() => navigate(`/admin/companie/${jobs._id}`)}>
-                        <Edit2 className="text-[#7444db] cursor-pointer" />
-                        <span className="text-[#7444db] font-semibold">
+                    <PopoverContent className="w-32 flex flex-col  gap-4 p-3 bg-white">
+                      <div className="flex gap-2 items-center  cursor-pointer" onClick={() => navigate(`/admin/companie/${jobs._id}`)}>
+                        <Edit2 className="text-[#7444db] size-5" />
+                        <span className="text-[#7444db] text-md font-semibold">
                           Edit
                         </span>
+                      </div>
+                      <div className="flex gap-2 items-center cursor-pointer  " onClick={()=> navigate(`/admin/jobs/${jobs._id}/applicants`)}>
+                        <Eye className="text-[#7444db] size-5" />
+                        <span className="text-[#7444db] text-md font-semibold">Applicant</span>
                       </div>
                     </PopoverContent>
                   </Popover>
