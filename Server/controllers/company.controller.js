@@ -88,7 +88,7 @@ export const updateCompany = async (req, res) => {
     const company = await Company.findByIdAndUpdate(companyId, updatedData, {
       new: true,
     });
-    console.log(company);
+
 
     return res.status(200).json({
       message: "copmany information are updated",

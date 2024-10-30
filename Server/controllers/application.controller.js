@@ -54,17 +54,16 @@ export const getAppliedJobs = async (req, res) => {
       options: { sort: { createdAt: -1 } },
       populate: { path: "company", options: { sort: { createdAt: -1 } } },
     });
-    if (!application) {
+    if (!application) 
       return res.status(400).json({
         message: "No Applications",
         success: false,
       });
-    } else {
       return res.status(200).json({
         application,
         success: true,
-      });
-    }
+      })
+    
   } catch (error) {
     console.log(error.message);
   }

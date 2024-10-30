@@ -104,7 +104,7 @@ function Navbar() {
                     <h4 className="font-medium">Syed MernStack</h4>
                     {user && user?.role === "recruiter" ? null : (
                       <p className="text-justify text-sm text-muted-foreground">
-                        {user?.profile?.bio.slice(0, 310)}.............
+                        {user?.profile?.bio?.slice(0, 310)}
                       </p>
                     )}
                   </div>

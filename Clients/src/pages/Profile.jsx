@@ -5,12 +5,15 @@ import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import { Contact, LucideLinkedin, Mail, Pen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import React, { useState } from "react";
-import AppliedJobs from "@/components/AppliedJobs";
+import AppliedJobsTable from "@/components/AppliedJobsTable";
 import UpdateProfileDialog from "@/components/UpdateProfileDialog";
 import { useSelector } from "react-redux";
 import store from "@/redux/store";
+import useGetAllAppliedJob from "@/hooks/useGetAllAppliedJob";
 
 function Profile() {
+
+  useGetAllAppliedJob()
   const isResume = true;
   const [open, setOpen] = useState(false);
   const { user } = useSelector((store) => store.auth);
@@ -48,6 +51,7 @@ function Profile() {
                 {user?.profile?.skills.length != 0 ? (
                   user?.profile?.skills.map((items, index) => (
                     <Badge
+                    key={index}
                       variant="ghost"
                       className="  border border-[#7444db] text-[#7444db] hover:bg-[#7444db] hover:text-white cursor-pointer text-md font-semibold    "
                     >
@@ -87,7 +91,7 @@ function Profile() {
           <h1 className="text-center mb-4 text-lg font-bold text-[#7444db]">
             Applied Jobs
           </h1>
-          <AppliedJobs />
+          <AppliedJobsTable />
         </div>
       </div>
       <UpdateProfileDialog open={open} setOpen={setOpen} />
