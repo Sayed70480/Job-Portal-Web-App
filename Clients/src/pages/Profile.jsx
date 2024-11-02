@@ -18,24 +18,34 @@ function Profile() {
   const [open, setOpen] = useState(false);
   const { user } = useSelector((store) => store.auth);
   return (
-    <div>
+    <div className="max-[600px]:px-2"> 
       <Navbar />
-      <div className="  max-w-[85%] mx-auto bg-gray-100 border border-gray-200 rounded-2xl overflow-hidden my-5 p-8">
-        <div className="flex justify-between gap-10 ">
-          <Avatar>
+      <div className="  max-w-[85%] mx-auto bg-gray-100  rounded-2xl overflow-hidden my-5 p-8   max-[600px]:p-0 max-[600px]:max-w-[100%]">
+        <div className="flex justify-between gap-10  max-[600px]:flex-col max-[600px]:items-center max-[600px]:w-full ">
+          <Avatar className=" max-[600px]:py-4" >
             <AvatarImage
-              className=" h-38 w-60 first-line: bg-gray-200 rounded-full  "
+              className="border border-[#7444db] flex items-center justify-center h-38 w-60 first-line: bg-gray-200 rounded-full  "
               src={user?.profile?. profilePhoto}
             />
+            <div className="  flex justify-center">
+            <Button
+            onClick={() => setOpen(true)}
+            className="  p-2 text-[#7444db]   flex gap-5 mt-4 "
+          >
+            <h2 className="text-xl">Edit Profile</h2>
+            <Pen />
+          </Button>
+            </div>
+            
           </Avatar>
-          <div className="w-full ">
+          <div className="w-full max-[600px]:px-2  ">
             <h1 className="font-bold text-xl text-[#7444db] mb-2">
               {user?.fullname}
             </h1>
             <p className="text-black font-semibold text-justify">
               {user?.profile?.bio}
             </p>
-            <div className="flex gap-4  mt-4">
+            <div className="flex gap-4  mt-4  max-[600px]:flex-col  max-[600px]:w-fit">
               <div className="flex border gap-2 items-center p-2 rounded-3xl border-[#7444db] cursor-pointer">
                 <Mail className="text-[#7444db]" />
                 <span>{user?.email}</span>
@@ -70,7 +80,7 @@ function Profile() {
                   <a
                     target="blank"
                     href={user?.profile?.resume}
-                    className="font-semibold hover:underline text-blue-400"
+                    className="font-bold hover:underline  text-blue-400"
                   >
                     {user?.profile?.resumeOriginalName}
                   </a>
@@ -80,12 +90,7 @@ function Profile() {
               </div>
             </div>
           </div>
-          <Button
-            onClick={() => setOpen(true)}
-            className=" border-[#7444db] p-2 text-[#7444db] "
-          >
-            <Pen />
-          </Button>
+        
         </div>
         <div className="mt-6 bg-white rounded-2xl p-2 border border-[#7444db] ">
           <h1 className="text-center mb-4 text-lg font-bold text-[#7444db]">

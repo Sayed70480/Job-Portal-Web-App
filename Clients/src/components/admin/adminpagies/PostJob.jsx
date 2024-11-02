@@ -71,12 +71,12 @@ const navigate = useNavigate()
   return (
     <div>
       <Navbar />
-      <div className=" flex flex-col items-center justify-center w-screen  my-10 ">
-        <h1 className="my-2 font-bold text-xl text-[#7444db]">
+      <div className=" flex flex-col items-center justify-center w-screen  my-10 max-[600px]:px-2  ">
+        <h1 className="my-2 font-bold text-xl text-[#7444db]  max-[600px]:w-full max-[600px]:text-center ">
           New Job Detail
         </h1>
         <form
-          className="shadow-lg border rounded-xl p-4 w-[40%]"
+          className="shadow-lg border rounded-xl p-4 w-[40%] max-[600px]:w-[100%]"
           onSubmit={sumbitHandler}
         >
           <div className="grid grid-cols-2 gap-2 ">

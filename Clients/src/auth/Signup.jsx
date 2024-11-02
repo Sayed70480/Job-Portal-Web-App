@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "@/components/shared/Navbar";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -12,9 +12,10 @@ import { useDispatch, useSelector } from "react-redux";
 import store from "@/redux/store";
 import { setLoading } from "@/redux/authSlice";
 import { Loader2 } from "lucide-react";
+import Footer from "@/components/shared/Footer";
 function Signup() {
 
-const {loading} = useSelector(store => store.auth);
+const {loading, user} = useSelector(store => store.auth);
 const dispatch = useDispatch();
 
   const [input, setInput] = useState({
@@ -72,14 +73,21 @@ const dispatch = useDispatch();
     }
   };
 
+
+  useEffect (()=>{
+    if(user){
+      navigate("/")
+    }
+      },[])
+
   return (
     <div>
       <Navbar />
-      <div className="flex items-center justify-center max-w-[85%] mx-auto">
+      <div className="flex items-center justify-center max-w-[85%] mx-auto max-[600px]:max-w-[100%] max-[600px]:px-2  h-screen">
         <form
           action=""
           onSubmit={submitHandler}
-          className="w-1/2 border border-[#7444db] rounded-[10px] p-4 my-10 "
+          className="w-1/2 border border-[#7444db] rounded-[10px] p-4 my-10 max-[600px]:w-full "
         >
           <h1 className="font-bold text-xl mb-5 text-[#7444db]">Sign Up</h1>
           <div className="my-2">
@@ -183,6 +191,7 @@ const dispatch = useDispatch();
           </span>
         </form>
       </div>
+      <Footer/>
     </div>
   );
 }

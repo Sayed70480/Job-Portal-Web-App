@@ -9,6 +9,8 @@ import cloudinary from "../utils/cloudinary.js";
 export const register = async (req, res) => {
   try {
     const { fullname, email, phoneNumber, password, role } = req.body;
+    console.log(fullname,email,password,phoneNumber,role);
+    
     const file = req.file;
     const fileUri = getDataUrl(file);
     const cloudResponse = await cloudinary.uploader.upload(fileUri.content);

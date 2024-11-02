@@ -8,6 +8,7 @@ import { toast } from 'sonner'
 import { useDispatch, useSelector } from 'react-redux'
 import { setAllApplicants } from '@/redux/applicationSlice'
 import store from '@/redux/store'
+import Footer from '@/components/shared/Footer'
 
 function Applicants() {
     const dispatch = useDispatch()
@@ -35,10 +36,11 @@ function Applicants() {
         <div>
 
             <Navbar />
-            <div className='max-w-[85%] m-auto my-10'>
+            <div className='max-w-[85%] m-auto my-10  h-[550px]'>
                 <h1 className='text-lg font-semibold '>Applications ({allApplicants?.applications?.length})</h1>
                 <ApplicantsTable />
             </div>
+            <Footer/>
         </div>
     )
 }

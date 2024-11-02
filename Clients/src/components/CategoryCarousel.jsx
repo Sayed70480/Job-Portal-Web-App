@@ -39,8 +39,8 @@ function CategoryCarousel() {
 
 
   return (
-    <div>
-      <Carousel className="w-full max-w-xl mx-auto my-20 ">
+    <div className="w-[85%] max-[600px]:w-full flex mx-auto justify-center">
+      <Carousel className="w-full max-w-xl  my-10 max-[600px]:max-w-[50%]">
         <CarouselContent>
           {category.map((categories, index) => (
             <CarouselItem className="md:basis-1/2 lg:basis-1/3 " key={index}>

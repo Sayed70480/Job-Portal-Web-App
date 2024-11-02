@@ -17,7 +17,7 @@ function JobsList({ jobs }) {
 
   const navigate = useNavigate();
   return (
-    <div className="shadow-xl p-4 bg-white border border-gray-100 rounded-[15px] h-fit">
+    <div className="shadow-xl p-4 bg-white border border-[#7444db] rounded-[15px] h-fit">
       <div className="flex items-center justify-between">
         <p className="font-semibold text-gray-400">{daysAgoFunction(jobs.createdAt) == 0 ? "Today" : `${daysAgoFunction(jobs.createdAt)} Day's Ago`} </p>
         <Button

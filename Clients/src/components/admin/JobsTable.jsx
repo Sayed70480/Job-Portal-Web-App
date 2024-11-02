@@ -47,7 +47,7 @@ console.log(filterAdminJobs);
 
   return (
     <div className="mt-3">
-      <Table>
+      <Table className=" bg-gray-100 rounded-xl">
         <TableCaption className="font-semibold text-[#7444db] text-lg">A list of your recent Posted Jobs</TableCaption>
         <TableHeader>
           <TableRow>

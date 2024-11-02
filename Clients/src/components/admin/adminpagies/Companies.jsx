@@ -25,7 +25,7 @@ function Companies() {
   return (
     <div>
       <Navbar />
-      <div className=" max-w-[85%] m-auto my-10 ">
+      <div className=" max-w-[85%] m-auto my-10  ">
         <div className="flex gap-4">
           <Input
             type="text"

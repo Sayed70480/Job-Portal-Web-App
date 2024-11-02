@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "@/components/shared/Navbar";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -21,6 +21,7 @@ function Login() {
     role: "",
   });
   const navigate = useNavigate();
+  const {user} = useSelector(store => store.auth)
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.auth.loading);
 
@@ -57,14 +58,19 @@ function Login() {
     }
   };
 
+  useEffect(()=>{
+if(user){
+  navigate("/")
+}
+  },[])
   return (
     <div>
       <Navbar />
-      <div className="flex items-center justify-center max-w-[85%] mx-auto">
+      <div className="flex items-center justify-center max-w-[85%] mx-auto  max-[600px]:max-w-[100%] max-[600px]:px-2 h-screen ">
         <form
           action=""
           onSubmit={submitHandler}
-          className="w-1/2 border border-[#7444db] rounded-[10px] p-4 my-10 "
+          className="w-1/2 border border-[#7444db] rounded-[10px] p-4 my-10 max-[600px]:w-full "
         >
           <h1 className="font-bold text-xl mb-5 text-[#7444db]">Login</h1>
 

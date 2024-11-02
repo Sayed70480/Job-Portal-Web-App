@@ -17,12 +17,12 @@ function HeroSection() {
    navigate("/browse")
   }
   return (
-    <div className="text-center">
-      <div className="flex flex-col  gap-5 my-10">
+    <div className=" flex justify-center my-10 mx-auto w-[85%]  max-[600px]:w-[100%]  max-[600px]:mx-0    ">
+      <div className="flex flex-col w-ful text-center  gap-5  ">
       <span className=" mx-auto px-4 py-2 rounded-full bg-gray-100 text-[#F83002] font-medium animate-pulse " >Jobs Hunt Web App</span>
       <h1 className="text-3xl font-bold">Search, Apply & <br/> Get Your <span className="text-[#6A38C2]">Dream Jobs</span> </h1>
-      <p className="font-semibold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe assumenda ullam earum? Ullam, voluptatibus!</p>
-      <div className="flex w-[40%]  shadow-lg border border-gray-300 rounded-full pl-3 items-center gap-4 mx-auto ">
+      <p className="font-semibold  ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe assumenda ullam earum? Ullam, voluptatibus!</p>
+      <div className="flex w-[40%]  shadow-lg border border-gray-300 rounded-full pl-3 items-center gap-4 mx-auto  max-[600px]:w-full ">
         <Input
         type="text"
         placeholder="Find your dream jobs"

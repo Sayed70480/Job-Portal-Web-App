@@ -29,7 +29,7 @@ function AdminJobs() {
   return (
     <div>
       <Navbar />
-      <div className=" max-w-[85%] m-auto my-10 ">
+      <div className=" max-w-[85%] m-auto my-10    max-[600px]:max-w-[100%] max-[600px]:px-2  h-[550px] ">
         <div className="flex gap-4">
           <Input
             type="text"

@@ -13,62 +13,91 @@ import CompanySetup from "./components/admin/adminpagies/CompanySetup";
 import AdminJobs from "./components/admin/adminpagies/AdminJobs";
 import PostJob from "./components/admin/adminpagies/PostJob";
 import Applicants from "./components/admin/adminpagies/Applicants";
+import ProtectedRouth from "./components/admin/protectedRourth";
 function App() {
 
-const Approuter = createBrowserRouter([
-  {
-    path:"/",
-    element : <Home/>
-  },
-  {
-    path:"/login",
-    element : <Login/>
-  },
-  {
-    path:"/signup",
-    element : <Signup/>
-  },
-  {
-    path:"/jobs",
-    element : <Jobs/>
-  },
-  {
-    path:"/job/description/:id",
-    element : <JobDescription />
-  },
-  {
-    path:"/browse",
-    element : <Browse/>
-  },
-  {
-    path:"/profile",
-    element : <Profile/>
-  },
-  {
-    path:"/admin/companies",
-    element : <Companies/>
-  },
-  {
-    path:"/admin/jobs",
-    element : <AdminJobs/>
-  },
-  {
-    path:"/admin/companie/create",
-    element : <CreateNewCompany/>
-  },
-  {
-    path:"/admin/job/create",
-    element : <PostJob/>
-  },
-  {
-    path:"/admin/companie/:id",
-    element : <CompanySetup />
-  },
-  {
-    path:"/admin/jobs/:id/applicants",
-    element : <Applicants/>
-  },
-])
+  const Approuter = createBrowserRouter([
+    {
+      path: "/",
+      element: <Home />
+    },
+    {
+      path: "/login",
+      element: <Login />
+    },
+    {
+      path: "/signup",
+      element: <Signup />
+    },
+    {
+      path: "/jobs",
+      element: <Jobs />
+    },
+    {
+      path: "/job/description/:id",
+      element: <JobDescription />
+    },
+    {
+      path: "/browse",
+      element: <Browse />
+    },
+    {
+      path: "/profile",
+      element: <Profile />
+    },
+    {
+      path: "/admin/companies",
+      element:
+
+             <ProtectedRouth>
+      <Companies />
+        
+ </ProtectedRouth>
+    },
+    {
+      path: "/admin/jobs",
+      element:
+       <ProtectedRouth>
+
+        <AdminJobs />
+      </ProtectedRouth>
+    },
+    {
+      path: "/admin/companie/create",
+      element:
+        <ProtectedRouth>
+
+          <CreateNewCompany />
+        </ProtectedRouth>
+    },
+    {
+      path: "/admin/job/create",
+      element:
+
+        <ProtectedRouth>
+
+          <PostJob />
+        </ProtectedRouth>
+    },
+    {
+      path: "/admin/companie/:id",
+      element:
+
+        <ProtectedRouth>
+
+          <CompanySetup />
+         </ProtectedRouth>
+    },
+    {
+      path: "/admin/jobs/:id/applicants",
+      element:
+
+        <ProtectedRouth>
+
+          <Applicants />
+         </ProtectedRouth>
+    },
+  ])
 
 
   return (

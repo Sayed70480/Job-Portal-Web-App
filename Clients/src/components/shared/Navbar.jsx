@@ -35,10 +35,10 @@ function Navbar() {
   };
 
   return (
-    <div className="bg-white   ">
-      <div className="flex  items-center justify-between mx-auto max-w-[85%] h-16 max-md:flex-col max-md:max-w-[100%] max-md:py-20 max-md:gap-4 max-md:justify-center">
+    <div className="bg-white flex mx-auto  max-w-[85%] max-[600px]:max-w-[100%] ">
+      <div className="flex  items-center justify-between w-full  h-16 max-md:flex-col max-md:max-w-[100%] max-md:py-20 max-md:gap-4 max-md:justify-center">
         <div>
-          {user?.profile?.role === "student" ? (
+          {user?.profile?.role !== "recruiter" ? (
             <Link to={"/"}>
               <h1 className="text-2xl font-bold">
                 Job<span className="text-[#7444db]">Portal</span>
@@ -62,7 +62,7 @@ function Navbar() {
                 <Link to={"/admin/jobs"}>
                   <li>Jobs</li>
                 </Link>
-              </>
+              </> 
             ) : (
               <>
                 <Link to="/">
@@ -91,7 +91,7 @@ function Navbar() {
           ) : (
             <Popover>
               <PopoverTrigger>
-                <Avatar className="cursor-pointer ">
+                <Avatar className="cursor-pointer border border-[#7444db] ">
                   <AvatarImage src={user?.profile?.profilePhoto} />
                 </Avatar>
               </PopoverTrigger>

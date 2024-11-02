@@ -1,10 +1,10 @@
 import React from 'react'
 import { Badge } from "@/components/ui/badge"
-
+import { useNavigate } from "react-router-dom";
 function LatestJobsCards({jobs}) {
-  
+  const navigate = useNavigate()
   return (
-    <div className=' shadow-xl p-5 rounded-[2%] h-fit bg-white border border-[#6A38C2] cursor-pointer'>
+    <div onClick={()=>navigate(`/job/description/${jobs._id}`)} className='  shadow-xl p-5 rounded-[2%] h-fit bg-white border border-[#6A38C2] cursor-pointer '>
       <div>
         <h1 className='font-medium text-lg text-[#6A38C2] '>{jobs?.company?.name}</h1>
         <p className='text-sm text-gray-500'>{jobs.location}</p>

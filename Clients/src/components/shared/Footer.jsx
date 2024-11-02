@@ -3,9 +3,9 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className=" flex   max-w-[85%] mx-auto justify-center">
+    <footer className=" flex  max-w-[85%] mt-10  mx-auto  max-[600px]:max-w-[100%]">
       {/* <div className="flex  mx-auto px-4 justify-center"> */}
-        <div className="flex gap-5 md-flex-row justify-between items-center w-full py-4">
+        <div className="flex max-[600px]:flex-col gap-5 md-flex-row justify-between items-center w-full py-4">
           <div className="md-4 md:mb-0">
             <h2 className="text-xl text-[#6A38C2] font-bold">Jobs Hunt Web App</h2>
             </div>

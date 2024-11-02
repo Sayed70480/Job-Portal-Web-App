@@ -1,3 +1,4 @@
+import Footer from "@/components/shared/Footer";
 import Navbar from "@/components/shared/Navbar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -41,8 +42,8 @@ function CreateNewCompany() {
   return (
     <div>
       <Navbar />
-      <div className="max-w-[85%] mx-auto my-10">
-        <div className=" rounded-xl text-center p-2 bg-gray-100">
+      <div className="max-w-[85%] mx-auto my-10  max-[600px]:max-w-[100%] max-[600px]:px-2 h-[550px]">
+        <div className=" rounded-xl text-center p-2 bg-gray-100 max-[600px]:px-2">
           <h1 className="font-bold text-2xl text-[#7444db]">
             Your Company Name
           </h1>
@@ -55,7 +56,7 @@ function CreateNewCompany() {
           <Label className="text-lg font-bold ">Company Name</Label>
           <Input
             type="text"
-            className="border rounded-xl my-2 text-sm text-center font-semibold focus:placeholder-gray-500 max-w-[55%]"
+            className="border rounded-xl my-2 text-sm text-center font-semibold focus:placeholder-gray-500 max-w-[55%] max-[600px]:max-w-[100%]"
             value={companyName}
             onChange={(e) => setCompanyName(e.target.value)}
             placeholder="Example , JobHunt MicroSoft etc...."
@@ -76,6 +77,7 @@ function CreateNewCompany() {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import Footer from "@/components/shared/Footer";
 import Navbar from "@/components/shared/Navbar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -91,9 +92,9 @@ function CompanySetup() {
   return (
     <div>
       <Navbar />
-      <div className="max-w-[85%] mx-auto my-10">
-        <form onSubmit={submitHandler}>
-          <div className="flex justify-between items-center border p-5 rounded-xl bg-gray-100 ">
+      <div className="max-w-[85%] mx-auto my-1 max-[600px]:max-w-[100%] max-[600px]:px-2  ">
+        <form onSubmit={submitHandler} >
+          <div className="flex justify-between items-center  p-5 rounded-xl bg-gray-100   max-[600px]:px-2">
             <Button
               variant="outline"
               className=" flex items-center  gap-2 rounded-xl hover:bg-white"
@@ -106,7 +107,7 @@ function CompanySetup() {
               Company Setup
             </h1>
           </div>
-          <div className="w-[60%] mx-auto grid grid-cols-2 gap-5  text-center my-2 items-center">
+          <div className="w-[60%] mx-auto grid grid-cols-2 gap-5  text-center my-2 items-center  max-[600px]:w-[100%]">
             <div>
               <Label className="text-lg   ">Company Name</Label>
               <Input
@@ -149,7 +150,7 @@ function CompanySetup() {
               />
             </div>
           </div>
-          <div className=" w-[60%] mx-auto text-center">
+          <div className=" w-[60%] mx-auto text-center max-[600px]:w-[100%]">
             <Label className="text-lg   ">Logo</Label>
             <Input
               type="file"
@@ -160,16 +161,16 @@ function CompanySetup() {
               onChange={changeFileEventHandler}
             />
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center max-[600px]:w-full ">
             {loading ? (
-              <Button className="  mt-4 w-[60%]  items-center mx-auto">
+              <Button className="  mt-4 w-[60%]  items-center mx-auto border-2 max-[600px]:w-[100%] border-purple-700 max-[600px]:mx-0 ">
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait
                 for updating...
               </Button>
             ) : (
               <Button
                 type="submit"
-                className="bg-[#7444db] mt-4  rounded-xl w-[60%] mx-auto text-white font-semibold text-md hover:bg-[#49337b]"
+                className="bg-[#7444db] mt-4  rounded-xl w-[60%] mx-auto text-white font-semibold text-md hover:bg-[#49337b] max-[600px]:w-[100%] max-[600px]:mx-0"
               >
                 Update
               </Button>
@@ -177,6 +178,7 @@ function CompanySetup() {
           </div>
         </form>
       </div>
+      <Footer/>
     </div>
   );
 }

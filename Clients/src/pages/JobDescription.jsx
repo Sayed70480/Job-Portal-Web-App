@@ -76,14 +76,14 @@ function JobDescription() {
       <Navbar />
       <div className="  max-w-[85%] mx-auto  my-8">
         <div className="flex justify-between">
-          <div>
+          <div className=" max-[600px]:flex max-[600px]:flex-col max-[600px]:items-center">
             <h1 className="font-bold text-xl text-[#7444db]">
               {singleJob?.title}
             </h1>
-            <div className="flex gap-4 mt-4">
+            <div className="flex gap-4 mt-4 max-[600px]:w-fit max-[600px]:items-center max-[600px]:flex-col ">
               <Badge
                 variant="ghost"
-                className="text-blue-500 border border-blue-500 font-bold"
+                className="text-blue-500 border  border-blue-500 font-bold"
               >
                 {singleJob?.position} Position
               </Badge>
