@@ -19,11 +19,18 @@ app.get("/",function(req,res){
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+const allowedOrigins = ['https://job-portal-web-app-qnhl.vercel.app', 'https://another-frontend-domain.com'];
+
 const corsOptions = {
-    origin: 'https://job-portal-web-app-qnhl.vercel.app/', // Allow all origins temporarily
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  origin: (origin, callback) => {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
-  optionsSuccessStatus: 204
 };
 
 app.use(cors(corsOptions));
