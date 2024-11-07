@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 const corsOptions = {
-  origin: "",
+  origin: "https://job-portal-web-app-qnhl.vercel.app/",
   credentials: true,
 };
 
