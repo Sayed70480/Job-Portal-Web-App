@@ -1,5 +1,5 @@
 import CategoryCarousel from '@/components/CategoryCarousel'
-import HeroSection from '@/components/heroSection'
+import HeroSection from '../components/HeroSection'
 import Navbar from '@/components/shared/Navbar'
 import LatestJobs from '@/components/LatestJobs'
 import React, { useEffect } from 'react'
