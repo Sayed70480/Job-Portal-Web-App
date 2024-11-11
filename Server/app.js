@@ -19,8 +19,14 @@ const _dirname = path.resolve();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(cookieParser());
 const corsOptions = {
+<<<<<<< HEAD
   origin: "http://localhost:5173",
+=======
+  origin: ["https://job-portal-web-app-qnhl.vercel.app/"],
+   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+>>>>>>> fced750f8993f4c3a42d0e45dd4e87adbd4fecbd
   credentials: true,
 };
 
