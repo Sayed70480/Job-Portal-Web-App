@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon  Server/app.js",
-    "build" : "npm install && npm install --prefix Clients && npm run build --prefix Clients && build --output public",
+   "build": "npm install && npm install --prefix Clients && npm run build --prefix Clients",
     "start":  "nodemon  Server/app.js"    
   },
   "keywords": [],
