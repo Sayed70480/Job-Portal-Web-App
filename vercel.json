@@ -1,13 +1,17 @@
 {
-  "projects": [
+  "builds": [
     {
-      "src": "Clients",
+      "src": "Clients/package.json",
       "use": "@vercel/static-build",
       "config": { "distDir": "build" }
     },
     {
-      "src": "Server",
+      "src": "Server/app.js",
       "use": "@vercel/node"
     }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "Server/app.js" },
+    { "src": "/(.*)", "dest": "Clients/build/$1" }
   ]
 }
