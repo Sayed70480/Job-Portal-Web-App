@@ -4,8 +4,9 @@
   "main": "App.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon  Server/app.js",
+    "build" : "npm install && npm install --prefix Clients && npm run build --prefix Clients",
+    "start":  "nodemon  Server/app.js"    
   },
   "keywords": [],
   "author": "",
