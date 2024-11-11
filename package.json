@@ -3,13 +3,11 @@
   "version": "1.0.0",
   "main": "App.js",
   "type": "module",
- "scripts": {
-  "dev": "nodemon Server/app.js",
-  "client-install": "npm install --prefix Clients",
-  "client-build": "npm run build --prefix Clients",
-  "build": "npm run client-install && npm run client-build",
-  "start": "nodemon Server/app.js"
-},
+  "scripts": {
+    "dev": "nodemon  Server/app.js",
+    "build" : "npm install && npm install --prefix Clients && npm run build --prefix Clients && build --output public",
+    "start":  "nodemon  Server/app.js"    
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
