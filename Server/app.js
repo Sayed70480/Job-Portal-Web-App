@@ -12,9 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 dotenv.config({});
 const _dirname = path.resolve();
-app.get("/",function(req,res){
-  res.json("hello")
-});
+
 //middleware 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
