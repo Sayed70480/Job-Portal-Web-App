@@ -12,7 +12,7 @@ function useGetAlljobs() {
   useEffect(() => {
     const fetchAllJobs = async () => {
       try {
-        const res = await axios.get(`${JOBS_API_END_POINT}/get?keyword=${searchQuery}`, {
+        const res = await axios.get(`https://job-portal-web-app-two.vercel.app/get?keyword=${searchQuery}`, {
           withCredentials: true,
         });
 
