@@ -6,7 +6,7 @@
       "use": "@vercel/static-build"
     },
     {
-      "src": "Server/package.json",
+      "src": "./Server/app.js",
       "use": "@vercel/node"
     }
   ],
