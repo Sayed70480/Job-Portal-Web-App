@@ -12,17 +12,17 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 dotenv.config({});
 const __dirname = path.resolve();
-
 //middleware 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cookieParser());
+
 const corsOptions = {
   origin: "http://localhost:3000",
   credentials: true,
 };
 
+// Apply the CORS middleware globally to all routes
 app.use(cors(corsOptions));
 
 // All Api's
