@@ -19,11 +19,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const corsOptions = {
-  origin: ["https://job-portal-web-app-two.vercel.app", "http://localhost:3000"],
-  credentials: true,
+  origin: [
+    "https://job-portal-web-app-two.vercel.app", // Allow Vercel frontend
+    "http://localhost:3000", // Allow local development
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
+  credentials: true, // Allow sending cookies with requests
+  allowedHeaders: ["Content-Type", "Authorization"], // Specify allowed headers (if needed)
 };
 
-
+// Apply the CORS middleware globally to all routes
 app.use(cors(corsOptions));
 
 // All Api's
