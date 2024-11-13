@@ -17,7 +17,7 @@ const _dirname = path.resolve();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cookieParser());
+
 const corsOptions = {
   origin: "https://job-portal-web-app-two.vercel.app",
   credentials: true,
