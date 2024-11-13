@@ -38,6 +38,12 @@ app.use(express.static(path.join(__dirname, "Clients", "dist")));
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, "Clients", "dist", "index.html"));
 });
+
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something went wrong!');
+});
 app.listen(PORT, (req, res) => {
   connectDB();
   console.log(`Server are running at port ${PORT}`);
