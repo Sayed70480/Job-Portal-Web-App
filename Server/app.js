@@ -11,7 +11,7 @@ import path from "path";
 const app = express();
 const PORT = process.env.PORT || 3000;
 dotenv.config({});
-const _dirname = path.resolve();
+const __dirname = path.resolve();
 
 //middleware 
 app.use(express.json());
@@ -34,10 +34,10 @@ app.use("/api/v1/jobs", jobsRoute);
 app.use("/api/v1/application", applicationRoute);
 
 
-app.use(express.static(path.join(_dirname,"/Clients/dist")))
-app.get('*',(req,res)=>{
-  res.sendFile(path.resolve(_dirname , "Clients" , "dist" , "index.html"))
-})
+app.use(express.static(path.join(__dirname, "Clients", "dist")));
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, "Clients", "dist", "index.html"));
+});
 app.listen(PORT, (req, res) => {
   connectDB();
   console.log(`Server are running at port ${PORT}`);
