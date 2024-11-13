@@ -24,7 +24,7 @@ function useGetAlljobs() {
         }
       } catch (error) {
         console.error("Error fetching jobs:", error.message);
-        toast.error("Error fetching jobs. Please try again later.");
+        
       }
     };
 
